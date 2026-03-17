@@ -1,6 +1,8 @@
 "use client"
 
 import { useState } from "react";
+import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 const faqs = [
   {
@@ -38,7 +40,7 @@ export default function FaqSection() {
 
   return (
     <section className="bg-white text-black antialiased py-16 md:py-24">
-      <main className="max-w-[88rem] mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+      <main className="max-w-352 mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         <div className="lg:col-span-4 flex flex-col h-full">
           <div className="flex items-center gap-2 mb-16 lg:mb-32 lg:pt-4">
             <div className="w-1.5 h-1.5 rounded-full bg-[#ef4444]" />
@@ -48,10 +50,12 @@ export default function FaqSection() {
           </div>
 
           <div className="mb-12 lg:mb-20">
-            <h2 className="text-3xl font-normal tracking-tight mb-4 text-black">
-              Have any question?
-            </h2>
-            <p className="text-lg text-gray-500 leading-relaxed max-w-[22rem]">
+            <AnimatedCharsHeading
+              as="h2"
+              text="Have any question?"
+              className="text-3xl font-normal tracking-tight mb-4 text-black"
+            />
+            <p className="text-lg text-gray-500 leading-relaxed max-w-88">
               Reach out anytime. We&apos;re happy to answer any questions before you
               commit to working with Rayden UI.
             </p>
@@ -74,16 +78,20 @@ export default function FaqSection() {
           </div>
 
           <div className="lg:mt-auto pt-16">
-            <button className="bg-black text-white px-7 py-4 rounded-full flex items-center gap-3 text-base font-normal hover:bg-gray-800 transition-colors inline-flex">
-              Contact Now <span className="text-sm">→</span>
-            </button>
+            <AnimatedCharsButton
+              href="#contact"
+              label="Contact Now"
+              className="h-11 bg-black px-7 text-base text-white hover:bg-gray-800"
+            />
           </div>
         </div>
 
         <div className="lg:col-span-8 flex flex-col">
-          <h1 className="text-6xl md:text-[6rem] leading-none font-normal tracking-tighter mb-10 md:mb-14 text-black">
-            FAQ&apos;s
-          </h1>
+          <AnimatedCharsHeading
+            as="h1"
+            text="FAQ's"
+            className="text-6xl md:text-[6rem] leading-none font-normal tracking-tighter mb-10 md:mb-14 text-black"
+          />
 
           <div className="flex flex-col gap-3">
             {faqs.map((item, index) => {
@@ -104,13 +112,16 @@ export default function FaqSection() {
                       </span>
                     </div>
                   </div>
-                  {isOpen && (
-                    <div className="mt-3">
-                      <p className="text-sm md:text-base text-gray-600 leading-relaxed pb-4 pr-4">
-                        {item.a}
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`mt-2 overflow-hidden transition-all duration-300 ease-out ${
+                      isOpen ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{ maxHeight: isOpen ? "160px" : "0px" }}
+                  >
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed pb-4 pr-4">
+                      {item.a}
+                    </p>
+                  </div>
                 </div>
               );
             })}

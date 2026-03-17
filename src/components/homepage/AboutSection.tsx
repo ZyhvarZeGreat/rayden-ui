@@ -1,5 +1,8 @@
 "use client";
 
+import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
+
 export default function AboutSection() {
   return (
     <section className="w-full bg-white text-gray-900 px-6 md:px-8 lg:px-12 py-16 lg:py-24">
@@ -17,25 +20,20 @@ export default function AboutSection() {
 
           <div className="flex-grow hidden lg:block" />
 
-          <button className="mt-10 lg:mt-0 bg-[#f15a29] text-white px-7 py-3.5 rounded-full flex items-center gap-2 text-base font-normal hover:bg-[#d94a1d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f15a29]">
-            Learn about the package
-            <span className="text-sm">→</span>
-          </button>
+          <AnimatedCharsButton
+            href="#contact"
+            label="Learn about the package"
+            className="mt-10 lg:mt-0 bg-[#f15a29] px-7 text-base text-white hover:bg-[#d94a1d]"
+          />
         </div>
 
         {/* Right Column: Headline */}
         <div className="lg:col-span-9 lg:pl-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl leading-[1.3] lg:leading-[1.25] tracking-tight font-normal text-gray-900 max-w-4xl">
-            Rayden UI is a{" "}
-            <span className="text-[#f15a29]">React component package</span> that
-            helps teams ship interfaces faster with consistent, production‑ready
-            design.{" "}
-            <span className="italic text-gray-700">
-              From primitives to full sections, every piece is built to match
-              your design system
-            </span>{" "}
-            so you can focus on product while Rayden handles the UI details.
-          </h1>
+          <AnimatedCharsHeading
+            as="h1"
+            text="Rayden UI is a React component package that helps teams ship interfaces faster with consistent, production‑ready design. From primitives to full sections, every piece is built to match your design system so you can focus on product while Rayden handles the UI details."
+            className="text-3xl sm:text-4xl lg:text-5xl leading-[1.3] lg:leading-[1.25] tracking-tight font-normal text-gray-900 max-w-4xl"
+          />
         </div>
       </div>
 

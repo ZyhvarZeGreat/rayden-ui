@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 const capabilities = [
   {
@@ -40,7 +42,11 @@ export default function SplitSection() {
           {/* Top Label */}
           <div className="flex items-center gap-2.5 mb-24 lg:mb-0 pt-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#f05023]" />
-            <span className="text-xs uppercase tracking-widest text-gray-300 font-medium">
+            <span
+              data-split="heading"
+              data-split-reveal="chars"
+              className="text-xs uppercase tracking-widest text-gray-300 font-medium"
+            >
               Package capabilities
             </span>
           </div>
@@ -58,7 +64,11 @@ export default function SplitSection() {
                 </span>
               </span>
             </div>
-            <p className="text-base text-gray-400 leading-relaxed max-w-[220px]">
+            <p
+              data-split="heading"
+              data-split-reveal="words"
+              className="text-base text-gray-400 leading-relaxed max-w-[220px]"
+            >
               Rayden UI turns your design system into real components — built to
               ship quickly, stay consistent, and scale.
             </p>
@@ -69,20 +79,17 @@ export default function SplitSection() {
         <div className="flex flex-col pt-2 lg:pl-16">
           {/* Header Area */}
           <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 pb-16">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight leading-[1.05] font-normal text-white">
-              Our provided
-              <br />
-              components that help
-              <br />
-              <span className="font-serif italic tracking-normal text-gray-100 pr-4">
-                your product.
-              </span>
-            </h2>
+            <AnimatedCharsHeading
+              as="h2"
+              text="Our provided components that help your product."
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight leading-[1.05] font-normal text-white"
+            />
 
-            <button className="bg-[#f05023] hover:bg-[#d0401b] text-white rounded-full px-8 py-4 flex items-center gap-3 transition-colors shrink-0 self-start xl:self-auto xl:mb-4">
-              <span className="text-base font-medium">Explore All Components</span>
-              <span className="inline-block text-sm">→</span>
-            </button>
+            <AnimatedCharsButton
+              href="/components"
+              label="Explore All Components"
+              className="h-11 bg-[#f05023] px-8 text-base text-white hover:bg-[#d0401b] shrink-0 self-start xl:self-auto xl:mb-4"
+            />
           </div>
 
           {/* Divider */}

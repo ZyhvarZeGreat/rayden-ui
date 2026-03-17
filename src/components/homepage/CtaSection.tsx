@@ -1,5 +1,6 @@
 import Reveal from "@/components/animations/Reveal";
-import Link from "next/link";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
+import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
 
 export default function CtaSection() {
   return (
@@ -18,10 +19,11 @@ export default function CtaSection() {
               <p className="text-[10px] uppercase tracking-[0.2em] text-orange-400/80">
                 READY WHEN YOUR NEXT IDEA HITS
               </p>
-              <h2 className="mt-3 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[1.05] tracking-[-0.04em] text-white">
-                Drop Rayden UI into your stack
-                <span className="block text-orange-400">and start from the good part.</span>
-              </h2>
+              <AnimatedCharsHeading
+                as="h2"
+                text="Drop Rayden UI into your stack and start from the good part."
+                className="mt-3 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[1.05] tracking-[-0.04em] text-white"
+              />
               <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-white/55">
                 Install once, then reach for tokens, primitives, and pre‑built blocks whenever you
                 need a dashboard, auth flow, or content surface. No design hand‑off, no blank canvas.
@@ -46,18 +48,16 @@ export default function CtaSection() {
                   </code>
                 </div>
                 <div className="mt-5 flex flex-col gap-3">
-                  <Link
+                  <AnimatedCharsButton
                     href="https://www.npmjs.com/package/@raydenui/ui"
-                    className="inline-flex h-11 items-center justify-center rounded-full bg-orange-500 px-5 text-[13px] font-semibold text-white shadow-soft-md transition-colors hover:bg-orange-400"
-                  >
-                    Install Rayden UI
-                  </Link>
-                  <Link
+                    label="Install Rayden UI"
+                    className="h-11 bg-orange-500 px-5 text-white shadow-soft-md hover:bg-orange-400"
+                  />
+                  <AnimatedCharsButton
                     href="/components"
-                    className="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/3 text-[13px] text-white/80 transition-colors hover:bg-white/6 hover:text-white"
-                  >
-                    Browse components &amp; blocks
-                  </Link>
+                    label="Browse components & blocks"
+                    className="h-11 border border-white/15 bg-white/3 text-white/80 hover:bg-white/6 hover:text-white"
+                  />
                 </div>
               </div>
             </Reveal>

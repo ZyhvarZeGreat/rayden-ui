@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,12 +47,11 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <div className="hidden h-5 w-px bg-white/8 md:block" />
 
-          <Link
+          <AnimatedCharsButton
             href="/components"
-            className="rounded-full bg-burnt-orange px-5 py-1.5 text-[13px] font-medium text-white transition-colors hover:bg-orange-600"
-          >
-            Docs
-          </Link>
+            label="Docs"
+            className="h-9 bg-burnt-orange px-5 text-[13px] font-medium text-white hover:bg-orange-600"
+          />
         </div>
 
         <button

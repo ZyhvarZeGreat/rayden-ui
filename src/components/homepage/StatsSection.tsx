@@ -1,5 +1,6 @@
 "use client";
 import Reveal from "@/components/animations/Reveal";
+import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
 
 export default function StatsSection() {
   const stats = [
@@ -29,9 +30,11 @@ export default function StatsSection() {
             <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">
               PERFORMANCE SNAPSHOT
             </p>
-            <h2 className="mt-2 text-[20px] font-semibold tracking-[-0.03em] text-white">
-              Numbers from teams building with Rayden.
-            </h2>
+            <AnimatedCharsHeading
+              as="h2"
+              text="Numbers from teams building with Rayden."
+              className="mt-2 text-[20px] font-semibold tracking-[-0.03em] text-white"
+            />
           </div>
           <p className="max-w-sm text-[11px] text-white/45">
             A quick look at what changes when UI primitives, tokens, and blocks

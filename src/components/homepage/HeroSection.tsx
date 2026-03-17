@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 const rotatingPhrases = ["interfaces", "dashboards", "SaaS products", "design systems"];
 
@@ -31,13 +32,23 @@ export default function HeroSection() {
       {/* Centered hero copy */}
       <div className="relative z-10 flex min-h-[110vh] flex-col items-center justify-center px-6 md:px-10">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <h1 className="text-[clamp(2.6rem,5vw,3.6rem)] leading-[1.02] tracking-[-0.04em] text-white">
+          <h1
+            data-split="heading"
+            data-split-reveal="lines"
+            data-split-immediate="true"
+            className="text-[clamp(2.6rem,5vw,3.6rem)] leading-[1.02] tracking-[-0.04em] text-white"
+          >
             A modern, accessible React component library
             <span className="block text-orange-400">
               built with Tailwind CSS v4.
             </span>
           </h1>
-          <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-white/65">
+          <p
+            data-split="heading"
+            data-split-reveal="words"
+            data-split-immediate="true"
+            className="mt-4 max-w-xl text-[13px] leading-relaxed text-white/65"
+          >
             Rayden UI brings the Rayna UI Figma design system to life with pixel‑perfect
             React components, tokens, and pre‑built blocks so you can ship real product
             UI—not just playgrounds.
@@ -63,18 +74,16 @@ export default function HeroSection() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
+            <AnimatedCharsButton
               href="/components"
-              className="rounded-full bg-orange-500 px-6 py-2.5 text-[13px] font-semibold text-white shadow-soft-md transition-colors hover:bg-orange-400"
-            >
-              Browse components
-            </Link>
-            <Link
+              label="Browse components"
+              className="bg-orange-500 text-white shadow-soft-md hover:bg-orange-400"
+            />
+            <AnimatedCharsButton
               href="https://www.npmjs.com/package/@raydenui/ui"
-              className="rounded-full border border-white/15 bg-white/5 px-6 py-2.5 text-[13px] text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              Install via npm
-            </Link>
+              label="Install via npm"
+              className="border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"
+            />
           </div>
         </div>
       </div>
