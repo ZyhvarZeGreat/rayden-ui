@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { componentRegistry, getComponentBySlug } from "@/lib/component-registry";
 import LiveDemo from "@/components/docs/LiveDemo";
@@ -7,8 +8,35 @@ export function generateStaticParams() {
   return componentRegistry.map((c) => ({ slug: c.slug }));
 }
 
+type PageParams = { slug: string };
+
+export async function generateMetadata(
+  { params }: { params: Promise<PageParams> },
+): Promise<Metadata> {
+  const { slug } = await params;
+  const component = getComponentBySlug(slug);
+
+  if (!component) {
+    return {
+      title: "Component not found — Rayden UI",
+    };
+  }
+
+  const categoryLabel = component.category.replace("-", " ");
+
+  return {
+    title: `${component.name} — Rayden UI ${categoryLabel} component`,
+    description: `${component.description} Part of the Rayden UI React component library for Tailwind CSS v4.`,
+    openGraph: {
+      title: `${component.name} — Rayden UI React component`,
+      description: component.description,
+      type: "website",
+    },
+  };
+}
+
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<PageParams>;
 }
 
 export default async function ComponentPage({ params }: PageProps) {
@@ -35,7 +63,7 @@ export default async function ComponentPage({ params }: PageProps) {
       </div>
 
       {/* Import */}
-      <div className="mb-10 rounded-lg border border-white/[0.04] bg-[#080808] px-5 py-3">
+      <div className="mb-10 rounded-lg border border-white/4 bg-[#080808] px-5 py-3">
         <code className="text-[13px]">
           <span className="text-orange-400">import</span>
           <span className="text-white/40">{" { "}</span>

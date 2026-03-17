@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { componentRegistry, categories } from "@/lib/component-registry";
 import ComponentPreview from "@/components/docs/ComponentPreview";
 import InView from "@/components/docs/InView";
+
+export const metadata: Metadata = {
+  title: "Rayden UI Components — React Tailwind library",
+  description:
+    "Browse 24+ Rayden UI React components and blocks — buttons, inputs, tables, sidebars, alerts, and more, all built on Tailwind CSS v4.",
+};
 
 export default function ComponentsIndex() {
   return (
