@@ -20,7 +20,7 @@ export default function HeroSection() {
       {/* Background: image + gradients */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <img
-          src="assets/hero1.jpg"
+          src="https://tabodozo.sirv.com/abstract-chromatic-gradient%20(3).jpg"
           alt="Abstract dark background"
           className="h-full w-full object-cover opacity-70 mix-blend-screen"
         />
