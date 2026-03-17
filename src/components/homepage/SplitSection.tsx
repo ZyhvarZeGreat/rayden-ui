@@ -88,7 +88,7 @@ export default function SplitSection() {
           {/* Divider */}
           <div className="w-full h-px bg-white/10" />
 
-          {/* Capability list with hover panel (no animation) */}
+          {/* Capability list with hover / accordion panel */}
           {capabilities.map((cap) => {
             const isOpen = openId === cap.id;
             return (
@@ -98,12 +98,12 @@ export default function SplitSection() {
                 onMouseEnter={() => setOpenId(cap.id)}
                 onMouseLeave={() => setOpenId(null)}
               >
-                <div className="flex w-full flex-col md:flex-row items-start md:items-center justify-between gap-6 py-6 cursor-pointer">
+                <div className="flex w-full flex-col md:flex-row items-start md:items-center justify-between gap-6 py-6 cursor-pointer group">
                   <div className="flex items-baseline gap-6 lg:gap-12 text-left">
                     <span className="text-xs font-mono text-gray-500 uppercase tracking-wider relative -top-1">
                       {cap.id}
                     </span>
-                    <h3 className="text-2xl lg:text-[2.1rem] tracking-tight font-normal text-white">
+                    <h3 className="text-2xl lg:text-[2.1rem] tracking-tight font-normal text-white group-hover:text-gray-300 transition-colors">
                       {cap.title}
                     </h3>
                   </div>
