@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+@source "../../node_modules/@raydenui/ui/dist";
+
+@theme inline {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ── Rayden color tokens ── */
+  --color-primary-50: #ffece5;
+  --color-primary-75: #fcd2c2;
+  --color-primary-100: #fcb59a;
+  --color-primary-200: #fa9874;
+  --color-primary-300: #f77a4a;
+  --color-primary-400: #f56630;
+  --color-primary-500: #eb5017;
+  --color-primary-600: #cc400c;
+  --color-primary-700: #ad3307;
+
+  --color-secondary-50: #e3effc;
+  --color-secondary-75: #c6ddf7;
+  --color-secondary-400: #1671d9;
+  --color-secondary-500: #0d5eba;
+  --color-secondary-700: #04326b;
+
+  --color-grey-50: #f9fafb;
+  --color-grey-75: #f7f9fc;
+  --color-grey-100: #f0f2f5;
+  --color-grey-200: #e4e7ec;
+  --color-grey-300: #d0d5dd;
+  --color-grey-400: #98a2b3;
+  --color-grey-500: #667185;
+  --color-grey-600: #475367;
+  --color-grey-700: #344054;
+  --color-grey-800: #1d2739;
+  --color-grey-900: #101928;
+
+  --color-success-50: #e7f6ec;
+  --color-success-75: #b5e3c4;
+  --color-success-200: #5fc381;
+  --color-success-400: #0f973d;
+  --color-success-500: #099137;
+  --color-success-600: #04802e;
+  --color-success-700: #036b26;
+
+  --color-error-50: #fbeae9;
+  --color-error-75: #f2bcba;
+  --color-error-100: #eb9b98;
+  --color-error-200: #e26e6a;
+  --color-error-400: #d42620;
+  --color-error-500: #cb1a14;
+  --color-error-700: #9e0a05;
+
+  --color-warning-50: #fef6e7;
+  --color-warning-75: #fbe2b7;
+  --color-warning-400: #f3a218;
+  --color-warning-500: #dd900d;
+  --color-warning-600: #ad6f07;
+  --color-warning-700: #865503;
+
+  --color-info-400: #0ba5ec;
+  --color-info-500: #0086c9;
+
+  /* ── Rayden typography tokens ── */
+  --text-display-lg: 56px;
+  --text-display-lg--line-height: 1;
+  --text-display-lg--letter-spacing: -.04em;
+  --text-display-sm: 48px;
+  --text-display-sm--line-height: 1;
+  --text-display-sm--letter-spacing: -.04em;
+  --text-h1: 40px;
+  --text-h1--line-height: 1.2;
+  --text-h1--letter-spacing: -.04em;
+  --text-h2: 36px;
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -.04em;
+  --text-h3: 32px;
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -.02em;
+  --text-h4: 28px;
+  --text-h4--line-height: 1.2;
+  --text-h4--letter-spacing: -.02em;
+  --text-h5: 24px;
+  --text-h5--line-height: 1.2;
+  --text-h5--letter-spacing: -.02em;
+  --text-h6: 20px;
+  --text-h6--line-height: 1.2;
+  --text-h6--letter-spacing: -.02em;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.45;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.45;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.45;
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: 1.45;
+  --text-caption-lg: 14px;
+  --text-caption-lg--line-height: 1.2;
+  --text-caption-lg--letter-spacing: .12em;
+  --text-caption-sm: 12px;
+  --text-caption-sm--line-height: 1.2;
+  --text-caption-sm--letter-spacing: .12em;
+  --text-caption-xs: 10px;
+  --text-caption-xs--line-height: 1.2;
+  --text-caption-xs--letter-spacing: .16em;
+
+  /* ── Rayden shadow tokens ── */
+  --shadow-soft-xxs: 0px 1.5px 4px -1px #0a0a0a1a;
+  --shadow-soft-xs: 0px 2px 4px -1px #0a0a0a0d, 0px 5px 13px -5px #0a0a0a1a;
+  --shadow-soft-sm: 0px 10px 18px -2px #0a0a0a1a;
+  --shadow-soft-md: 0px 0px 3px -1px #0a0a0a0d, 0px 14px 22px -9px #0a0a0a33;
+  --shadow-soft-lg: 0px 4px 6px -2px #0a0a0a0d, 0px 16px 24px -4px #0a0a0a1a;
+  --shadow-soft-xl: 0px 8px 8px -4px #0a0a0a0d, 0px 24px 32px -4px #0a0a0a1a;
+  --shadow-soft-2xl: 0px 32px 54px -12px #0a0a0a4d;
+  --shadow-soft-3xl: 0px 40px 72px -12px #0a0a0a40;
+  --shadow-hard-xxs: 0px 2px 5px -2px #0a0a0a4d, 0px 2px 7px 0px #0a0a0a40, 0px 0px 0px 1px #ffffff1a;
+  --shadow-hard-xs: 0px 2px 12px -1px #0a0a0a66, 0px 2px 2px -1px #0a0a0a1a, 0px 0px 0px 1px #ffffff1a;
+  --shadow-hard-sm: 0px 6px 16px 0px #0a0a0a59, 0px 0px 0px 1px #ffffff1a;
+  --shadow-hard-md: 0px 0px 3px -1px #0a0a0a1a, 0px 16px 24px -6px #0a0a0a59, 0px 0px 0px 1px #ffffff1a;
+
+  /* ── Page colors ── */
+  --color-background: #050505;
+  --color-foreground: #ededed;
+  --color-burnt-orange: #e65100;
+  --color-deep-orange: #bf360c;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-dark: #050505;
+  --color-dark-card: #0e0e0e;
+  --color-dark-elevated: #161616;
+  --color-cream: #f5f2ec;
+  --color-light: #faf9f6;
+  --color-muted: #888;
+
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter);
+  --font-display: var(--font-display);
+}
+
+:root {
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --burnt-orange: #e65100;
+  --deep-orange: #bf360c;
+  --bg-dark: #050505;
+  --bg-dark-card: #0e0e0e;
+  --bg-dark-elevated: #161616;
+  --bg-cream: #f5f2ec;
+  --bg-light: #faf9f6;
+  --foreground-dark: #ededed;
+  --foreground-muted: #888;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--foreground-dark);
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), "Host Grotesk", system-ui, sans-serif;
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(234, 88, 12, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, #050505 0%, #0e0e0e 50%, #050505 100%);
+}
+
+.gradient-cta {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(234, 88, 12, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #050505 0%, #0e0e0e 50%, #050505 100%);
+}
+
+.glow-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(234, 88, 12, 0.3) 50%, transparent 100%);
+  height: 1px;
+}
+
+.glow-line-v {
+  background: linear-gradient(180deg, transparent 0%, rgba(234, 88, 12, 0.2) 50%, transparent 100%);
+  width: 1px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.code-block {
+  background: var(--bg-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.pill-nav {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.section-label {
+  font-family: var(--font-inter), monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.section-label-dark {
+  font-family: var(--font-inter), monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.reveal-y {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-y.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-animated {
+  position: relative;
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease;
+}
+
+.btn-animated:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -10px rgba(249, 115, 22, 0.55);
+}
+
+.btn-animated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: buttonPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-y {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .btn-animated,
+  .btn-animated:hover {
+    transition: none;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-animated::after {
+    animation: none;
+  }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
