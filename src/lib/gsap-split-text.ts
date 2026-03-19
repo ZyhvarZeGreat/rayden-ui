@@ -30,31 +30,18 @@ export function initMaskTextScrollReveal() {
           ? ["lines", "words"]
           : ["lines", "words", "chars"];
 
-      // Prevent FOUC
-      gsap.set(heading, { autoAlpha: 1 });
-
       try {
         SplitText.create(heading, {
           type: typesToSplit.join(", "),
           mask: "lines",
           autoSplit: true,
+          linesClass: "line",
+          wordsClass: "word",
+          charsClass: "letter",
           onSplit(instance: any) {
             const targets = instance[type] as HTMLElement[];
             const cfg = splitConfig[type];
 
-            const immediate = heading.dataset.splitImmediate === "true";
-
-            // Hero / explicitly marked headings: play immediately, slightly slower
-            if (immediate) {
-              return gsap.from(targets, {
-                yPercent: 110,
-                duration: cfg.duration + 0.3,
-                stagger: cfg.stagger * 1.5,
-                ease: "expo.out",
-              });
-            }
-
-            // Below fold: scroll-triggered reveal
             return gsap.from(targets, {
               yPercent: 110,
               duration: cfg.duration,
@@ -62,15 +49,16 @@ export function initMaskTextScrollReveal() {
               ease: "expo.out",
               scrollTrigger: {
                 trigger: heading,
-                start: "clamp(top 75%)",
+                start: "clamp(top 80%)",
                 once: true,
               },
             });
           },
         });
       } catch {
-        // Fallback: ensure heading is just visible without animation
-        gsap.set(heading, { clearProps: "all", autoAlpha: 1 });
+        // If SplitText fails, the CSS `[data-split="heading"] { visibility: hidden; }`
+        // would otherwise keep the heading invisible.
+        gsap.set(heading, { visibility: "visible", autoAlpha: 1, clearProps: "all" });
       }
     });
 }

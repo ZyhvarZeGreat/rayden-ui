@@ -507,10 +507,48 @@ export const componentRegistry: ComponentMeta[] = [
     name: "Divider",
     description: "Horizontal divider with label, icon, title, or action button.",
     category: "layout",
-    code: `<div className="flex flex-col gap-6">
+    code: `<div className="rounded-xl border border-white/8 bg-[#050505] p-6 space-y-6">
+  <div className="flex items-start justify-between gap-4">
+    <div>
+      <h3 className="text-lg font-medium text-white">Billing preferences</h3>
+      <p className="mt-1 text-[13px] text-white/45">Split sections cleanly between form groups.</p>
+    </div>
+    <Button variant="primary" size="sm">Save</Button>
+  </div>
+
   <Divider />
-  <Divider variant="with-label" label="OR" />
-  <Divider variant="with-title" label="Section Title" />
+
+  <div className="space-y-4">
+    <div className="flex items-center justify-between gap-4">
+      <div>
+        <p className="text-[13px] font-medium text-white">Payment method</p>
+        <p className="text-[12px] text-white/35">Choose how invoices are paid</p>
+      </div>
+      <Button variant="grey" appearance="outlined" size="sm">Manage</Button>
+    </div>
+
+    <Divider variant="with-label" label="OR" />
+
+    <div className="flex items-center justify-between gap-4">
+      <div>
+        <p className="text-[13px] font-medium text-white">Use a purchase order</p>
+        <p className="text-[12px] text-white/35">Recommended for procurement teams</p>
+      </div>
+      <Button variant="grey" appearance="outlined" size="sm">Add PO</Button>
+    </div>
+
+    <Divider variant="with-title" label="Team invoices" />
+
+    <div className="flex items-center justify-between gap-4">
+      <div>
+        <p className="text-[13px] font-medium text-white">Invite a teammate</p>
+        <p className="text-[12px] text-white/35">They can view and export invoices</p>
+      </div>
+      <Button variant="primary" size="sm">Invite</Button>
+    </div>
+
+    <Divider variant="with-button" label="Need more help?" />
+  </div>
 </div>`,
     props: [
       { name: "variant", type: '"default" | "with-icon" | "with-label" | "with-title" | "with-button"', default: '"default"', description: "Variant" },

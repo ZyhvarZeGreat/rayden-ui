@@ -41,7 +41,7 @@ export default function AnimatedCharsButton({
     <Link
       href={href}
       aria-label={ariaLabel ?? label}
-      className={`btn-animate-chars ${className}`}
+      className={`btn-animate-chars font-host ${className}`}
     >
       <div className="btn-animate-chars__bg" />
       <span

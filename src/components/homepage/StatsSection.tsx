@@ -57,7 +57,6 @@ export default function StatsSection() {
                   <span className="uppercase tracking-[0.18em]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="h-5 w-px bg-white/10" />
                   <span className="rounded-full bg-orange-500/10 px-2 py-0.5 text-[10px] text-orange-300">
                     Rayden metric
                   </span>
@@ -66,7 +65,6 @@ export default function StatsSection() {
                   <div className="text-[clamp(2.3rem,3.4vw,3.2rem)] font-semibold tracking-[-0.04em] text-white">
                     {stat.value}
                   </div>
-                  <div className="h-5 w-px bg-white/10" />
                   <p className="text-[12px] font-medium text-white/65">
                     {stat.label}
                   </p>

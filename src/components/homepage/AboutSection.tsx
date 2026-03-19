@@ -1,12 +1,54 @@
 "use client";
 
-import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const aboutHeadingText =
+  "Rayden UI is a React component package that helps teams ship interfaces faster with consistent, production-ready design. From primitives to full sections, every piece is built to match your design system so you can focus on product while Rayden handles the UI details.";
+
 export default function AboutSection() {
+  const aboutHeadingRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    const heading = aboutHeadingRef.current;
+    if (!heading) return;
+
+    const words = aboutHeadingText.split(" ");
+    heading.innerHTML = words
+      .map(
+        (word) =>
+          `<span class="about-word" style="color: rgba(31,41,55,0.4)">${word}</span>`
+      )
+      .join(" ");
+
+    const wordElements = heading.querySelectorAll<HTMLSpanElement>(".about-word");
+    const tween = gsap.to(wordElements, {
+      color: "#111827",
+      stagger: 0.05,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: heading,
+        start: "top 85%",
+        end: "bottom 20%",
+        scrub: true,
+      },
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, []);
+
   return (
     <section className="w-full bg-white text-gray-900 px-6 md:px-8 lg:px-12 py-16 lg:py-24">
-      <div className="mx-auto max-w-[85rem]">
+      <div className="mx-auto max-w-340">
         {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
         {/* Left Column: Label & Button */}
@@ -18,7 +60,7 @@ export default function AboutSection() {
             </span>
           </div>
 
-          <div className="flex-grow hidden lg:block" />
+          <div className="grow hidden lg:block" />
 
           <AnimatedCharsButton
             href="#contact"
@@ -29,11 +71,12 @@ export default function AboutSection() {
 
         {/* Right Column: Headline */}
         <div className="lg:col-span-9 lg:pl-8">
-          <AnimatedCharsHeading
-            as="h1"
-            text="Rayden UI is a React component package that helps teams ship interfaces faster with consistent, production‑ready design. From primitives to full sections, every piece is built to match your design system so you can focus on product while Rayden handles the UI details."
-            className="text-3xl sm:text-4xl lg:text-5xl leading-[1.3] lg:leading-[1.25] tracking-tight font-normal text-gray-900 max-w-4xl"
-          />
+          <h1
+            ref={aboutHeadingRef}
+            className="text-3xl sm:text-4xl lg:text-5xl leading-[1.3] lg:leading-tight tracking-tight font-normal text-gray-500 max-w-4xl"
+          >
+            {aboutHeadingText}
+          </h1>
         </div>
       </div>
 

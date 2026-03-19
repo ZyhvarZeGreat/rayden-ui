@@ -72,6 +72,93 @@ export default function Sidebar() {
       </div>
 
       <div className="mt-4 border-t border-white/6 pt-4 pr-1 overflow-y-auto h-[calc(100vh-3.5rem)]">
+        {/* Blocks group */}
+        <div className="mb-6">
+          <div className="mb-2 px-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/25">
+            Blocks
+          </div>
+          <Link
+            href="/components/blocks"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            Overview
+          </Link>
+          <Link
+            href="/components/blocks#login-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            Login
+          </Link>
+          <Link
+            href="/components/blocks#notifications-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            Notifications
+          </Link>
+          <Link
+            href="/components/blocks#table-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            Table
+          </Link>
+          <Link
+            href="/components/blocks#searchable-table-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            Searchable table
+          </Link>
+          <Link
+            href="/components/blocks#quicksend-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            QuickSend
+          </Link>
+          <Link
+            href="/components/blocks#recent-transactions-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            RecentTransactions
+          </Link>
+          <Link
+            href="/components/blocks#empty-state-block"
+            className={`block rounded-md px-3 py-1.5 text-[13px] transition-colors ${
+              pathname === "/components/blocks"
+                ? "text-white/70 hover:text-white"
+                : "text-white/40 hover:bg-white/3 hover:text-white/70"
+            }`}
+          >
+            EmptyState
+          </Link>
+        </div>
+
         {categories.map((cat) => {
           const items = componentRegistry.filter((c) => c.category === cat.key);
           if (items.length === 0) return null;

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Twitter, Instagram, Facebook, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -23,7 +22,7 @@ export default function Footer() {
               placeholder="Enter your email address..."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-transparent border-none focus:ring-0 text-base text-white placeholder-gray-400 px-5 w-full outline-none"
+              className="font-host flex-1 bg-transparent border-none focus:ring-0 text-base text-white placeholder-gray-400 px-5 w-full outline-none"
             />
             <button className="bg-white text-black rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-200 transition-colors shrink-0">
               {/* simple arrow icon */}
@@ -37,25 +36,9 @@ export default function Footer() {
             related to Rayden UI. You can unsubscribe at any time.
           </p>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-3 relative z-10">
-            <button className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-white/15">
-              <Twitter className="h-4 w-4" />
-            </button>
-            <button className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-white/15">
-              <Instagram className="h-4 w-4" />
-            </button>
-            <button className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-white/15">
-              <Facebook className="h-4 w-4" />
-            </button>
-            <button className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-white/15">
-              <Linkedin className="h-4 w-4" />
-            </button>
-          </div>
-
           {/* Watermark */}
           <div className="mt-auto lg:absolute lg:-bottom-6 lg:-left-2 pointer-events-none overflow-hidden w-full">
-            <span className="text-9xl tracking-tighter font-medium text-orange-500/30 uppercase select-none leading-none block">
+            <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter font-medium text-orange-500/30 uppercase select-none leading-none block">
               RAYDEN
             </span>
           </div>
@@ -72,16 +55,28 @@ export default function Footer() {
               [ QUICK LINKS ]
             </div>
             <div className="flex flex-col space-y-4 text-base text-gray-200">
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link
+                href="/"
+                className="font-host hover:text-white transition-colors"
+              >
                 Home
               </Link>
-              <Link href="/components" className="hover:text-white transition-colors">
+              <Link
+                href="/components"
+                className="font-host hover:text-white transition-colors"
+              >
                 Components
               </Link>
-              <Link href="#services" className="hover:text-white transition-colors">
+              <Link
+                href="#services"
+                className="font-host hover:text-white transition-colors"
+              >
                 Capabilities
               </Link>
-              <Link href="#why" className="hover:text-white transition-colors">
+              <Link
+                href="#why"
+                className="font-host hover:text-white transition-colors"
+              >
                 Why Rayden
               </Link>
             </div>
@@ -95,17 +90,20 @@ export default function Footer() {
             <div className="flex flex-col space-y-4 text-base text-gray-200">
               <a
                 href="https://github.com/nicksarma24/rayden-ui"
-                className="hover:text-white transition-colors"
+                className="font-host hover:text-white transition-colors"
               >
                 GitHub
               </a>
               <a
                 href="https://www.npmjs.com/package/@raydenui/ui"
-                className="hover:text-white transition-colors"
+                className="font-host hover:text-white transition-colors"
               >
                 npm
               </a>
-              <Link href="/components" className="hover:text-white transition-colors">
+              <Link
+                href="/components"
+                className="font-host hover:text-white transition-colors"
+              >
                 Docs
               </Link>
             </div>
@@ -121,7 +119,7 @@ export default function Footer() {
                 <span className="font-medium text-white">Email:</span>
                 <a
                   href="mailto:support@raydenui.com"
-                  className="hover:text-white transition-colors"
+                  className="font-host hover:text-white transition-colors"
                 >
                   support@raydenui.com
                 </a>

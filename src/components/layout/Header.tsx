@@ -23,7 +23,7 @@ export default function Header() {
             </defs>
           </svg>
           <span className="hidden text-[13px] font-semibold tracking-[0.18em] text-white/55 sm:inline">
-            RAYDEN&nbsp;UI
+            <span className="font-host">RAYDEN&nbsp;UI</span>
           </span>
         </Link>
         </div>
@@ -37,7 +37,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="rounded-full px-4 py-1.5 text-[13px] text-white/50 transition-colors hover:bg-white/6 hover:text-white"
+              className="font-host rounded-full px-4 py-1.5 text-[13px] text-white/50 transition-colors hover:bg-white/6 hover:text-white"
             >
               {item.label}
             </Link>
@@ -75,7 +75,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="block rounded-lg px-4 py-2 text-sm text-white/60 hover:bg-white/4"
+              className="font-host block rounded-lg px-4 py-2 text-sm text-white/60 hover:bg-white/4"
               onClick={() => setMobileOpen(false)}
             >
               {item.label}

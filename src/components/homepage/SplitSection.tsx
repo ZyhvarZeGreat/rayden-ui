@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import AnimatedCharsHeading from "@/components/animations/AnimatedCharsHeading";
 import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 const capabilities = [
@@ -10,24 +9,40 @@ const capabilities = [
     title: "Tree-shakeable React components",
     detail:
       "Import only what you use. Keep bundle sizes lean while still having access to a full component system.",
+    panelTitle: "Ship only what you actually render",
+    panelBody:
+      "Every component in Rayden UI is authored as a small, focused module so modern bundlers can safely tree‑shake unused pieces. Reach for complex dashboards and flows without paying the cost for things you never import.",
+    panelTags: ["ESM ready", "Bundle‑size friendly", "Side‑effect free"],
   },
   {
     id: "02",
     title: "Tailwind CSS v4 friendly setup",
     detail:
       "Tokens and utilities are designed to slot into Tailwind v4 with minimal config and consistent spacing.",
+    panelTitle: "Drop straight into your Tailwind config",
+    panelBody:
+      "Design tokens, radii, and spacing scales are mapped to Tailwind v4 so your Rayden components and local UI speak the same visual language. No giant theme overrides or hand‑rolled utility classes required.",
+    panelTags: ["Tailwind v4 tokens", "Consistent spacing", "Design‑system first"],
   },
   {
     id: "03",
     title: "Type-safe, documented APIs",
     detail:
       "Full TypeScript support for props and variants so refactors stay safe and predictable.",
+    panelTitle: "Confident refactors with rich types",
+    panelBody:
+      "Every primitive ships with strict TypeScript types and docs so your editor can autocomplete variants, slots, and composition patterns. You get inline guidance as you wire blocks together — not buried MD files.",
+    panelTags: ["TypeScript‑first", "IntelliSense docs", "Safe refactors"],
   },
   {
     id: "04",
     title: "Accessibility-first patterns",
     detail:
       "Focus states, ARIA attributes, and keyboard navigation are baked into the components from day one.",
+    panelTitle: "Accessible by default, not as an afterthought",
+    panelBody:
+      "Interactive pieces like dialogs, menus, and accordions follow WCAG‑aligned patterns out of the box — with focus traps, ARIA attributes, and keyboard paths already wired so you don’t have to re‑implement them.",
+    panelTags: ["ARIA patterns", "Keyboard paths", "Visible focus"],
   },
 ];
 
@@ -44,8 +59,8 @@ export default function SplitSection() {
             <div className="w-1.5 h-1.5 rounded-full bg-[#f05023]" />
             <span
               data-split="heading"
-              data-split-reveal="chars"
-              className="text-xs uppercase tracking-widest text-gray-300 font-medium"
+              data-split-reveal="lines"
+              className="text-xs uppercase tracking-widest text-white/35 font-medium"
             >
               Package capabilities
             </span>
@@ -79,11 +94,13 @@ export default function SplitSection() {
         <div className="flex flex-col pt-2 lg:pl-16">
           {/* Header Area */}
           <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-10 pb-16">
-            <AnimatedCharsHeading
-              as="h2"
-              text="Our provided components that help your product."
+            <h2
+              data-split="heading"
+              data-split-reveal="lines"
               className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight leading-[1.05] font-normal text-white"
-            />
+            >
+              Our provided components that help your product.
+            </h2>
 
             <AnimatedCharsButton
               href="/components"
@@ -95,17 +112,26 @@ export default function SplitSection() {
           {/* Divider */}
           <div className="w-full h-px bg-white/10" />
 
-          {/* Capability list with hover / accordion panel */}
+          {/* Capability list with click-to-preview accordion */}
           {capabilities.map((cap) => {
             const isOpen = openId === cap.id;
             return (
               <div
                 key={cap.id}
                 className="border-b border-white/10 last:border-b-0"
-                onMouseEnter={() => setOpenId(cap.id)}
-                onMouseLeave={() => setOpenId(null)}
               >
-                <div className="flex w-full flex-col md:flex-row items-start md:items-center justify-between gap-6 py-6 cursor-pointer group">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  onKeyDown={(e) => {
+                    if (e.key !== "Enter" && e.key !== " ") return;
+                    e.preventDefault();
+                    setOpenId((prev) => (prev === cap.id ? null : cap.id));
+                  }}
+                  onClick={() => setOpenId((prev) => (prev === cap.id ? null : cap.id))}
+                  className="flex w-full flex-col md:flex-row items-start md:items-center justify-between gap-6 py-6 cursor-pointer group"
+                >
                   <div className="flex items-baseline gap-6 lg:gap-12 text-left">
                     <span className="text-xs font-mono text-gray-500 uppercase tracking-wider relative -top-1">
                       {cap.id}
@@ -115,45 +141,42 @@ export default function SplitSection() {
                     </h3>
                   </div>
                   <span className="text-xs text-white/50 md:mr-4 hidden md:inline-block">
-                    {isOpen ? "Hover out to reset" : "Hover to preview"}
+                    {isOpen ? "Click to close" : "Click to preview"}
                   </span>
                 </div>
 
-                {/* Open state inspired by visual branding card */}
-                <div className={isOpen ? "mt-2" : "hidden"}>
-                  <div className="rounded-3xl bg-[#050505] px-6 md:px-8 py-6 md:py-7 flex flex-col md:flex-row gap-6 md:gap-10 items-stretch">
+                {/* Open state with animated accordion panel */}
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-out ${
+                    isOpen
+                      ? "mt-2 max-h-[360px] opacity-100 translate-y-0"
+                      : "max-h-0 opacity-0 -translate-y-1"
+                  }`}
+                >
+                  <div className="rounded-3xl bg-[#050505] px-6 md:px-8 py-6 md:py-7 flex flex-col gap-4 items-stretch">
                     {/* Text + pills */}
-                    <div className="flex-1 flex flex-col justify-between gap-4">
+                    <div className="flex flex-col justify-between gap-4">
                       <div>
                         <h4 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">
-                          Visual Branding
+                          {cap.panelTitle}
                         </h4>
+                        <p className="text-xs md:text-sm text-white/40 leading-relaxed max-w-md mb-2">
+                          {cap.detail}
+                        </p>
                         <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
-                          We craft distinctive interface identities that feel as sharp
-                          as your brand — from typography to motion, each capability
-                          slot is built to stay on‑grid with your system.
+                          {cap.panelBody}
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-2 pt-2 text-[11px] md:text-xs">
-                        <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 uppercase tracking-[0.18em]">
-                          Brand Strategy
-                        </span>
-                        <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 uppercase tracking-[0.18em]">
-                          Graphics Design
-                        </span>
-                        <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 uppercase tracking-[0.18em]">
-                          Guidelines
-                        </span>
+                        {cap.panelTags?.map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 uppercase tracking-[0.18em]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-
-                    {/* Image side */}
-                    <div className="w-full md:w-[260px] lg:w-[280px] rounded-3xl overflow-hidden bg-[#111] flex items-center justify-center">
-                      <img
-                        src="/.cursor/projects/c-Users-ELITEBOOK-845-G8-rayden-ui-page/assets/c__Users_ELITEBOOK_845_G8_AppData_Roaming_Cursor_User_workspaceStorage_4f65bb8f017a7695eb66f55cbb3635b6_images_image-253aa7de-252b-4456-90f5-8a7fc7ab1d77.png"
-                        alt="Visual branding preview"
-                        className="w-full h-full object-cover"
-                      />
                     </div>
                   </div>
                 </div>

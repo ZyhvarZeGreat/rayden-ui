@@ -3,12 +3,92 @@ import Link from "next/link";
 import { componentRegistry, categories } from "@/lib/component-registry";
 import ComponentPreview from "@/components/docs/ComponentPreview";
 import InView from "@/components/docs/InView";
+import LiveDemo from "@/components/docs/LiveDemo";
 
 export const metadata: Metadata = {
   title: "Rayden UI Components — React Tailwind library",
   description:
     "Browse 24+ Rayden UI React components and blocks — buttons, inputs, tables, sidebars, alerts, and more, all built on Tailwind CSS v4.",
 };
+
+const loginBlockCode = `
+<div className="w-full max-w-md mx-auto rounded-2xl border border-white/10 bg-[#050505] p-6 space-y-4">
+  <div className="space-y-1">
+    <p className="text-[11px] uppercase tracking-[0.18em] text-white/40">Login block</p>
+    <h3 className="text-lg font-medium text-white">Sign in to your workspace</h3>
+    <p className="text-xs text-white/40">Use your email or SSO provider to continue.</p>
+  </div>
+  <div className="space-y-3">
+    <Input label="Email" placeholder="you@company.com" />
+    <Input type="password" label="Password" placeholder="••••••••" />
+    <div className="flex items-center justify-between text-xs text-white/40">
+      <label className="inline-flex items-center gap-2">
+        <Checkbox />
+        <span>Remember me</span>
+      </label>
+      <button className="text-orange-400 hover:text-orange-300">Forgot password?</button>
+    </div>
+    <Button variant="primary" className="w-full">
+      Continue
+    </Button>
+  </div>
+  <div className="flex items-center gap-2 pt-1">
+    <div className="h-px flex-1 bg-white/10" />
+    <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">Or continue with</span>
+    <div className="h-px flex-1 bg-white/10" />
+  </div>
+  <div className="flex gap-2">
+    <Button variant="ghost" className="w-full border-white/10 bg-white/5">
+      <Icon name="github" className="mr-2 h-3.5 w-3.5" />
+      GitHub
+    </Button>
+    <Button variant="ghost" className="w-full border-white/10 bg-white/5">
+      <Icon name="google" className="mr-2 h-3.5 w-3.5" />
+      Google
+    </Button>
+  </div>
+</div>
+`;
+
+const notificationsBlockCode = `
+<div className="w-full max-w-md mx-auto rounded-2xl border border-white/10 bg-[#050505] p-6 space-y-4">
+  <div className="flex items-center justify-between">
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-white/40">Notifications block</p>
+      <h3 className="text-lg font-medium text-white">Latest activity</h3>
+    </div>
+    <Badge tone="neutral" size="sm">3 new</Badge>
+  </div>
+  <div className="space-y-2">
+    <ActivityItem size="sm">
+      <ActivityContent
+        title="Payment received"
+        description="You were paid $1,250 for \"March design sprint\""
+        meta="2m ago • Finance"
+      />
+    </ActivityItem>
+    <Divider />
+    <ActivityItem size="sm">
+      <ActivityContent
+        title="New comment"
+        description="Alex left feedback on \"Onboarding checklist\""
+        meta="18m ago • Projects"
+      />
+    </ActivityItem>
+    <Divider />
+    <ActivityItem size="sm">
+      <ActivityContent
+        title="Deployment completed"
+        description="rayden-ui-web@v1.2.0 deployed to production"
+        meta="29m ago • Deploys"
+      />
+    </ActivityItem>
+  </div>
+  <button className="mt-1 w-full rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/70 hover:bg-white/8">
+    View all activity
+  </button>
+</div>
+`;
 
 export default function ComponentsIndex() {
   return (
@@ -31,7 +111,7 @@ export default function ComponentsIndex() {
       </div>
 
       {/* Blocks overview */}
-      <div className="mb-16 rounded-xl border border-white/4 bg-dark-card p-6">
+      <div id="blocks" className="mb-16 rounded-xl border border-white/4 bg-dark-card p-6">
         <div className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-orange-400/70">
           Blocks
         </div>
@@ -41,11 +121,11 @@ export default function ComponentsIndex() {
         </p>
         <div className="mb-4 grid gap-2 text-[12px] text-white/55 sm:grid-cols-2">
           <ul className="space-y-1.5">
-            <li>
+            <li id="block-login">
               <span className="text-white/75">LoginBlock</span>
               <span className="text-white/30"> — Auth layout with social providers</span>
             </li>
-            <li>
+            <li id="block-notifications">
               <span className="text-white/75">NotificationsBlock</span>
               <span className="text-white/30"> — Notification feed with actions</span>
             </li>
@@ -84,6 +164,21 @@ export default function ComponentsIndex() {
             <span className="text-orange-400">from</span>
             <span className="text-green-400/60"> {' "@raydenui/ui"'}</span>
           </code>
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div>
+            <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
+              Login block playground
+            </div>
+            <LiveDemo code={loginBlockCode} />
+          </div>
+          <div>
+            <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
+              Notifications block playground
+            </div>
+            <LiveDemo code={notificationsBlockCode} />
+          </div>
         </div>
       </div>
 
