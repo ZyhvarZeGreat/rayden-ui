@@ -150,35 +150,53 @@ const previewStyle: React.CSSProperties = {
 } as React.CSSProperties;
 
 export default function LiveDemo({ code }: LiveDemoProps) {
+  const [activeTab, setActiveTab] = useState<"preview" | "code">("preview");
+
   return (
     <LiveProvider code={code} scope={scope} noInline={false}>
-      <div className="rounded-xl border border-white/4">
-        <div
-          className="rounded-t-xl border-b border-white/10 p-8 min-h-[80px]"
-          style={previewStyle}
-        >
-          <LivePreview />
+      <div className="rounded-xl border border-white/4 overflow-hidden">
+        <div className="border-b border-white/10 bg-dark-card">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} variant="pill">
+            <Tab value="preview">Live preview</Tab>
+            <Tab value="code">Code</Tab>
+          </Tabs>
         </div>
 
+        {/* Preview */}
+        {activeTab === "preview" && (
+          <div
+            className="rounded-t-xl border-b border-white/10 p-6 sm:p-8 min-h-[80px]"
+            style={previewStyle}
+          >
+            <LivePreview />
+          </div>
+        )}
+
         {/* Editor */}
-        <div className="bg-[#080808]">
-          <div className="flex items-center border-b border-white/3 px-4 py-2">
-            <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/20">
-              Edit code
-            </span>
+        {activeTab === "code" && (
+          <div className="bg-[#080808]">
+            <div className="flex items-center border-b border-white/3 px-4 py-2">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/20">
+                Edit code
+              </span>
+            </div>
+
+            {/* Keep editor from taking over the page on mobile */}
+            <div className="max-h-[360px] overflow-auto">
+              <div className="[&_.prism-code]:bg-transparent! [&_.prism-code]:text-[13px]! [&_textarea]:outline-none!">
+                <LiveEditor
+                  style={{
+                    fontFamily: "var(--font-display), monospace",
+                    fontSize: "13px",
+                    padding: "16px",
+                    background: "transparent",
+                    lineHeight: "1.6",
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <div className="[&_.prism-code]:bg-transparent! [&_.prism-code]:text-[13px]! [&_textarea]:outline-none!">
-            <LiveEditor
-              style={{
-                fontFamily: "var(--font-display), monospace",
-                fontSize: "13px",
-                padding: "16px",
-                background: "transparent",
-                lineHeight: "1.6",
-              }}
-            />
-          </div>
-        </div>
+        )}
 
         <LiveError className="border-t border-red-500/10 bg-red-500/3 px-4 py-2 text-[12px] text-red-400" />
       </div>

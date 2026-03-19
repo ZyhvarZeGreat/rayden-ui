@@ -48,7 +48,7 @@ export default async function ComponentPage({ params }: PageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl py-4">
+    <div className="mx-auto max-w-4xl px-4 sm:px-6 py-4">
       {/* Header */}
       <div className="mb-10">
         <div className="section-label mb-3">

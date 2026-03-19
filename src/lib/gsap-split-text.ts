@@ -30,6 +30,10 @@ export function initMaskTextScrollReveal() {
           ? ["lines", "words"]
           : ["lines", "words", "chars"];
 
+      // Prevent `[data-split="heading"] { visibility: hidden; }` from keeping text invisible
+      // if the ScrollTrigger doesn't fire immediately.
+      gsap.set(heading, { visibility: "visible", autoAlpha: 1 });
+
       try {
         SplitText.create(heading, {
           type: typesToSplit.join(", "),
@@ -47,9 +51,12 @@ export function initMaskTextScrollReveal() {
               duration: cfg.duration,
               stagger: cfg.stagger,
               ease: "expo.out",
+              // Don't apply the "from" state until ScrollTrigger actually starts.
+              // This prevents headings from staying invisible if the trigger doesn't fire instantly.
+              immediateRender: false,
               scrollTrigger: {
                 trigger: heading,
-                start: "clamp(top 80%)",
+                start: "top 80%",
                 once: true,
               },
             });

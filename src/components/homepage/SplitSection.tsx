@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import AnimatedCharsButton from "@/components/AnimatedCharsButton";
 
 const capabilities = [
@@ -50,7 +51,10 @@ export default function SplitSection() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <section className="w-full max-w-[1500px] mx-auto py-16 px-6 lg:px-12 bg-[#050505] text-white">
+    <section
+      id="services"
+      className="w-full max-w-[1500px] mx-auto py-16 px-6 lg:px-12 bg-[#050505] text-white"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] lg:gap-0">
         {/* Left Column */}
         <div className="flex flex-col justify-between lg:border-r border-white/10 pb-12 lg:pb-0 pr-0 lg:pr-12">
@@ -60,7 +64,7 @@ export default function SplitSection() {
             <span
               data-split="heading"
               data-split-reveal="lines"
-              className="text-xs uppercase tracking-widest text-white/35 font-medium"
+              className="inline-block text-xs uppercase tracking-widest text-white/35 font-medium"
             >
               Package capabilities
             </span>
@@ -72,9 +76,9 @@ export default function SplitSection() {
               <span className="inline-flex h-3.5 w-3.5 items-center justify-center">
                 <span className="block h-3 w-3 border-y-[6px] border-y-transparent border-l-[9px] border-l-current" />
               </span>
-              <span className="text-lg">
+              <span className="text-base sm:text-lg">
                 The{" "}
-                <span className="font-serif italic text-xl tracking-wide">
+                <span className="font-serif italic text-lg sm:text-xl tracking-wide">
                   Introduce
                 </span>
               </span>
@@ -82,7 +86,7 @@ export default function SplitSection() {
             <p
               data-split="heading"
               data-split-reveal="words"
-              className="text-base text-gray-400 leading-relaxed max-w-[220px]"
+              className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-[220px]"
             >
               Rayden UI turns your design system into real components — built to
               ship quickly, stay consistent, and scale.
@@ -97,7 +101,7 @@ export default function SplitSection() {
             <h2
               data-split="heading"
               data-split-reveal="lines"
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight leading-[1.05] font-normal text-white"
+              className="text-[clamp(2.6rem,4.8vw,5rem)] tracking-tight leading-[1.05] font-normal text-white max-w-[28ch] text-balance"
             >
               Our provided components that help your product.
             </h2>
@@ -107,6 +111,57 @@ export default function SplitSection() {
               label="Explore All Components"
               className="h-11 bg-[#f05023] px-8 text-base text-white hover:bg-[#d0401b] shrink-0 self-start xl:self-auto xl:mb-4"
             />
+          </div>
+
+          {/* SEO: internal links to the docs for common primitives */}
+          <div className="mt-2 pb-12">
+            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/45 mb-4">
+              Most used primitives
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/components/button"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Button
+              </Link>
+              <Link
+                href="/components/input"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Input
+              </Link>
+              <Link
+                href="/components/select"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Select
+              </Link>
+              <Link
+                href="/components/checkbox"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Checkbox
+              </Link>
+              <Link
+                href="/components/tabs"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Tabs
+              </Link>
+              <Link
+                href="/components/table"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Table
+              </Link>
+              <Link
+                href="/components/tooltip"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] text-white/65 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                Tooltip
+              </Link>
+            </div>
           </div>
 
           {/* Divider */}
@@ -136,7 +191,7 @@ export default function SplitSection() {
                     <span className="text-xs font-mono text-gray-500 uppercase tracking-wider relative -top-1">
                       {cap.id}
                     </span>
-                    <h3 className="text-2xl lg:text-[2.1rem] tracking-tight font-normal text-white group-hover:text-gray-300 transition-colors">
+                    <h3 className="text-xl sm:text-2xl lg:text-[2.1rem] tracking-tight font-normal text-white group-hover:text-gray-300 transition-colors">
                       {cap.title}
                     </h3>
                   </div>
@@ -157,13 +212,13 @@ export default function SplitSection() {
                     {/* Text + pills */}
                     <div className="flex flex-col justify-between gap-4">
                       <div>
-                        <h4 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">
+                        <h4 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight mb-2">
                           {cap.panelTitle}
                         </h4>
-                        <p className="text-xs md:text-sm text-white/40 leading-relaxed max-w-md mb-2">
+                        <p className="text-[11px] sm:text-xs md:text-sm text-white/40 leading-relaxed max-w-md mb-2">
                           {cap.detail}
                         </p>
-                        <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
+                        <p className="text-xs sm:text-sm md:text-base text-white/70 leading-relaxed max-w-md">
                           {cap.panelBody}
                         </p>
                       </div>

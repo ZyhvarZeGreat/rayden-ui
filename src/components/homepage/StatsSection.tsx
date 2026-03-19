@@ -33,7 +33,7 @@ export default function StatsSection() {
             <AnimatedCharsHeading
               as="h2"
               text="Numbers from teams building with Rayden."
-              className="mt-2 text-[20px] font-semibold tracking-[-0.03em] text-white"
+              className="mt-2 text-[clamp(18px,2.4vw,22px)] font-semibold tracking-[-0.03em] text-white text-balance wrap-break-word"
             />
           </div>
           <p className="max-w-sm text-[11px] text-white/45">

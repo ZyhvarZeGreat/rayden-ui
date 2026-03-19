@@ -44,7 +44,7 @@ export default function HeroSection() {
             yPercent: -110,
             duration: 0.85,
             ease: "expo.inOut",
-          }, "+=3")
+          }, 0)
           .to(secondHero, {
             yPercent: 0,
             duration: 0.85,
@@ -96,7 +96,10 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[110vh] w-full overflow-hidden bg-black text-white antialiased">
+    <section
+      id="top"
+      className="relative min-h-[60vh] md:min-h-[110vh] w-full overflow-hidden bg-black text-white antialiased"
+    >
       {/* Background: image + gradients */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <img
@@ -111,10 +114,10 @@ export default function HeroSection() {
       {/* Centered hero copy */}
       <div
         ref={rootRef}
-        className="relative z-10 flex min-h-[110vh] flex-col items-center justify-center px-6 md:px-10"
+        className="relative z-10 flex min-h-[60vh] md:min-h-[110vh] flex-col items-center justify-center px-6 md:px-10"
       >
         <div className="mx-auto flex w-full min-h-50 flex-col items-center text-center">
-          <h1 className="relative w-full max-w-full sm:max-w-[70%] lg:max-w-[50%] mx-auto overflow-hidden text-center min-h-40 md:min-h-56">
+          <h1 className="relative w-full max-w-full sm:max-w-[70%] lg:max-w-[50%] mx-auto overflow-hidden text-center min-h-[160px] sm:min-h-40 md:min-h-56 translate-y-1 md:translate-y-0">
             {heroMessages.map((message, index) => (
               <span
                 key={message.title}
@@ -123,7 +126,9 @@ export default function HeroSection() {
                 }}
                 className="absolute inset-0"
               >
-                <span className="block text-[clamp(2.8rem,6vw,3.9rem)] leading-[1.02] tracking-[-0.045em] text-white">
+                <span
+                  className="block text-[clamp(2rem,7vw,2.6rem)] sm:text-[clamp(2.3rem,5.5vw,3.1rem)] md:text-[clamp(2.6rem,6vw,3.6rem)] leading-[1.02] tracking-[-0.045em] text-white"
+                >
                   {message.title}
                 </span>
               
@@ -132,9 +137,9 @@ export default function HeroSection() {
           </h1>
 
           {/* Rotating text line */}
-          <div className="mt-3 flex items-center justify-center gap-1.5 text-[13px] md:text-[14px] uppercase tracking-[0.16em] text-white/50">
+          <div className="mt-2 flex flex-col md:flex-row items-center justify-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-[0.16em] text-white/50">
             <span className="font-semibold">DESIGNED FOR</span>
-            <div className="relative h-5 overflow-hidden w-44 text-left">
+            <div className="relative h-4 sm:h-5 overflow-hidden w-36 sm:w-44 text-left mx-auto">
               {rotatingPhrases.map((phrase, index) => (
                 <span
                   key={phrase}
@@ -149,7 +154,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <AnimatedCharsButton
               href="/components"
               label="Browse components"

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import AnimatedCharsButton from "@/components/AnimatedCharsButton";
+import Image from "next/image";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,27 +13,17 @@ export default function Header() {
       <nav className="flex h-14 max-w-2xl flex-1 items-center justify-between rounded-full border border-white/6 bg-[#050505]/90 px-4 backdrop-blur-xl">
         <div className="flex items-center gap-2.5">
           <Link href="/" className="flex items-center gap-2.5 pr-2">
-          <svg width="22" height="20" viewBox="0 0 208 194" fill="none">
-            <path fillRule="evenodd" clipRule="evenodd" d="M120.242 1.158L199.49 30.987L199.385 115.663L87.755 192.818L8.507 162.989L8.612 78.313L120.242 1.158Z" fill="black"/>
-            <path d="M9.041 162.436L8.837 78.181L88.711 107.37L87.997 192.652L9.041 162.436Z" fill="url(#hn0)"/>
-            <path d="M119.734 85.928L120.217 1.164L199.405 30.862L199.386 115.662L119.734 85.928Z" fill="url(#hn1)"/>
-            <path d="M119.736 85.928L120.195 1.214L8.138 78.665L8.494 162.816L119.736 85.928Z" fill="#6B2B03"/>
-            <defs>
-              <linearGradient id="hn0" x1="78" y1="119.7" x2="-36" y2="176.4"><stop stopColor="#230E00"/><stop offset="1" stopColor="#893700"/></linearGradient>
-              <linearGradient id="hn1" x1="119.8" y1="86" x2="199.5" y2="31"><stop stopColor="#FF6200"/><stop offset="1" stopColor="#FFBF10"/></linearGradient>
-            </defs>
-          </svg>
-          <span className="hidden text-[13px] font-semibold tracking-[0.18em] text-white/55 sm:inline">
-            <span className="font-host">RAYDEN&nbsp;UI</span>
-          </span>
+          <Image className="h-8 w-8" src="/main-logo.png" alt="Rayden UI" width={22} height={20} />
         </Link>
         </div>
 
         <div className="hidden items-center gap-0.5 md:flex">
           {[
-            { label: "Home", href: "/" },
-            { label: "Components", href: "#works" },
+            { label: "Home", href: "#top" },
+            { label: "Works", href: "#works" },
             { label: "Capabilities", href: "#services" },
+            { label: "FAQ", href: "#faq" },
+            { label: "Contact", href: "#contact" },
           ].map((item) => (
             <Link
               key={item.label}
@@ -50,7 +41,7 @@ export default function Header() {
           <AnimatedCharsButton
             href="/components"
             label="Docs"
-            className="h-9 bg-burnt-orange px-5 text-[13px] font-medium text-white hover:bg-orange-600"
+            className="hidden md:inline-flex h-9 bg-burnt-orange px-5 text-[13px] font-medium text-white hover:bg-orange-600"
           />
         </div>
 
@@ -65,24 +56,43 @@ export default function Header() {
         </button>
       </nav>
 
-      {mobileOpen && (
-        <div className="absolute top-16 left-4 right-4 rounded-2xl border border-white/6 bg-[#0a0a0a]/95 p-4 backdrop-blur-xl md:hidden">
-          {[
-            { label: "Home", href: "/" },
-            { label: "Components", href: "#works" },
-            { label: "Capabilities", href: "#services" },
-          ].map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="font-host block rounded-lg px-4 py-2 text-sm text-white/60 hover:bg-white/4"
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+      <div
+        className={`absolute top-16 left-4 right-4 rounded-2xl border border-white/6 bg-[#0a0a0a]/95 p-4 backdrop-blur-xl transition-all duration-300 ease-out md:hidden ${
+          mobileOpen
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+            : "opacity-0 translate-y-2 scale-95 pointer-events-none"
+        }`}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="flex flex-col">
+          <div className="flex flex-col gap-1">
+            {[
+              { label: "Home", href: "#top" },
+              { label: "Works", href: "#works" },
+              { label: "Capabilities", href: "#services" },
+              { label: "FAQ", href: "#faq" },
+              { label: "Contact", href: "#contact" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="font-host block rounded-lg px-4 py-2 text-sm text-white/60 hover:bg-white/4"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-auto pt-4">
+            <AnimatedCharsButton
+              href="/components"
+              label="Docs"
+              className="w-full justify-center h-11 bg-burnt-orange px-5 text-[13px] font-medium text-white hover:bg-orange-600"
+            />
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

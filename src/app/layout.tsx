@@ -3,6 +3,7 @@ import { Inter, Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./rayden-components.css";
 import GsapTextRevealBoot from "@/components/GsapTextRevealBoot";
+import SmoothScrollProvider from "@/components/animations/SmoothScrollProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,6 +17,9 @@ const hostGrotesk = Host_Grotesk({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
   title: "Rayden UI — Build UI faster",
   description:
     "A React UI system designed for humans and AI. 24+ production-ready components built with Tailwind CSS v4.",
@@ -32,6 +36,7 @@ export default function RootLayout({
         className={`${inter.variable} ${hostGrotesk.variable} antialiased`}
       >
         <GsapTextRevealBoot />
+        <SmoothScrollProvider />
         {children}
       </body>
     </html>

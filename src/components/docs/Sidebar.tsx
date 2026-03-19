@@ -8,7 +8,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-60 border-r border-white/4 bg-[#050505] px-4 py-4">
+    <aside className="fixed left-0 top-0 z-70 h-screen w-60 border-r border-white/4 bg-[#050505] px-4 py-4">
       <div className="flex items-center gap-3 px-1">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/15 ring-1 ring-orange-500/40">
           <svg width="20" height="17" viewBox="0 0 208 194" fill="none">

@@ -51,7 +51,7 @@ const loginBlockCode = `
 `;
 
 const notificationsBlockCode = `
-<div className="w-full max-w-md mx-auto rounded-2xl border border-white/10 bg-[#050505] p-6 space-y-4">
+<div className="w-full max-w-md mx-auto rounded-2xl border border-white/10 bg-[#050505] p-6 space-y-4 overflow-hidden [&_p]:break-words [&_*]:break-words">
   <div className="flex items-center justify-between">
     <div>
       <p className="text-[11px] uppercase tracking-[0.18em] text-white/40">Notifications block</p>
@@ -63,7 +63,7 @@ const notificationsBlockCode = `
     <ActivityItem size="sm">
       <ActivityContent
         title="Payment received"
-        description="You were paid $1,250 for \"March design sprint\""
+        description="You were paid $1,250 for March design sprint"
         meta="2m ago • Finance"
       />
     </ActivityItem>
@@ -71,7 +71,7 @@ const notificationsBlockCode = `
     <ActivityItem size="sm">
       <ActivityContent
         title="New comment"
-        description="Alex left feedback on \"Onboarding checklist\""
+        description="Alex left feedback on Onboarding checklist"
         meta="18m ago • Projects"
       />
     </ActivityItem>

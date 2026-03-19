@@ -39,7 +39,10 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-white text-black antialiased py-16 md:py-24">
+    <section
+      id="faq"
+      className="bg-white text-black antialiased py-16 md:py-24"
+    >
       <main className="max-w-352 mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         <div className="lg:col-span-4 flex flex-col h-full">
           <div className="flex items-center gap-2 mb-16 lg:mb-32 lg:pt-4">
@@ -53,9 +56,9 @@ export default function FaqSection() {
             <AnimatedCharsHeading
               as="h2"
               text="Have any question?"
-              className="text-3xl font-normal tracking-tight mb-4 text-black"
+              className="text-[clamp(1.5rem,4.4vw,2.2rem)] font-normal tracking-tight mb-4 text-black leading-[1.1] text-balance"
             />
-            <p className="text-lg text-gray-500 leading-relaxed max-w-88">
+            <p className="text-base sm:text-lg text-gray-500 leading-relaxed max-w-88">
               Reach out anytime. We&apos;re happy to answer any questions before you
               commit to working with Rayden UI.
             </p>
@@ -64,15 +67,12 @@ export default function FaqSection() {
           <div className="flex items-center gap-4 mb-16 lg:mb-0">
             <img
               src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=128&auto=format&fit=crop&grayscale"
-              alt="John Dukes"
+              alt="Leslie Williams"
               className="w-14 h-14 rounded-full object-cover grayscale"
             />
             <div>
               <div className="text-lg font-normal text-black leading-tight">
-                John Dukes
-              </div>
-              <div className="text-xs text-gray-400 uppercase tracking-widest mt-1">
-                Project Manager
+                Leslie Williams
               </div>
             </div>
           </div>
@@ -88,9 +88,9 @@ export default function FaqSection() {
 
         <div className="lg:col-span-8 flex flex-col">
           <AnimatedCharsHeading
-            as="h1"
+            as="h2"
             text="FAQ's"
-            className="text-6xl md:text-[6rem] leading-none font-normal tracking-tighter mb-10 md:mb-14 text-black"
+            className="text-[clamp(1.9rem,7vw,5.2rem)] leading-none font-normal tracking-tighter mb-10 md:mb-14 text-black max-w-[16ch] text-balance wrap-break-word"
           />
 
           <div className="flex flex-col gap-3">
@@ -99,15 +99,15 @@ export default function FaqSection() {
               return (
                 <div
                   key={item.q}
-                  className="bg-[#F4F4F5] rounded-xl px-8 pt-6 pb-3 cursor-pointer hover:bg-gray-100 transition-colors group"
+                  className="bg-[#F4F4F5] rounded-xl px-5 sm:px-8 pt-5 sm:pt-6 pb-3 cursor-pointer hover:bg-gray-100 transition-colors group"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="text-xl font-normal text-black tracking-tight pr-4">
+                  <div className="flex items-start gap-3">
+                    <span className="flex-1 min-w-0 text-left text-lg sm:text-xl font-normal text-black tracking-tight wrap-break-word">
                       {item.q}
                     </span>
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105">
-                      <span className="text-black/60 text-sm">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105">
+                      <span className="text-black/60 text-sm leading-none">
                         {isOpen ? "−" : "+"}
                       </span>
                     </div>
