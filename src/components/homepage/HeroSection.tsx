@@ -31,6 +31,11 @@ export default function HeroSection() {
     if (heroTargets.length < 2) return;
 
     const ctx = gsap.context(() => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
       // Main hero copy rotation (vertical cut reveal) using manual loop
       const [firstHero, secondHero] = heroTargets;
 
@@ -61,6 +66,19 @@ export default function HeroSection() {
             ease: "expo.inOut",
           }, "<");
       };
+
+      // Mobile: keep hero text static (no vertical cut reveal).
+      if (isMobile || prefersReducedMotion) {
+        gsap.set(firstHero, { yPercent: 0 });
+        gsap.set(secondHero, { yPercent: 110 });
+
+        // Also lock the "DESIGNED FOR" phrase to the first item.
+        if (phraseTargets.length > 0) {
+          gsap.set(phraseTargets, { yPercent: 110 });
+          gsap.set(phraseTargets[0], { yPercent: 0 });
+        }
+        return;
+      }
 
       playHeroLoop();
 
@@ -117,7 +135,13 @@ export default function HeroSection() {
         className="relative z-10 flex min-h-[60vh] md:min-h-[110vh] flex-col items-center justify-center px-6 md:px-10"
       >
         <div className="mx-auto flex w-full min-h-50 flex-col items-center text-center">
-          <h1 className="relative w-full max-w-full sm:max-w-[70%] lg:max-w-[50%] mx-auto overflow-hidden text-center min-h-[160px] sm:min-h-40 md:min-h-56 translate-y-1 md:translate-y-0">
+          {/* Mobile: single static hero line (no vertical cut reveal) */}
+          <h1 className="md:hidden w-full px-2 text-center text-[clamp(2rem,7vw,2.6rem)] leading-[1.02] tracking-[-0.045em] text-white">
+            {heroMessages[0].title}
+          </h1>
+
+          {/* Desktop/tablet: rotating vertical cut reveal */}
+          <h1 className="hidden md:block relative w-full max-w-full sm:max-w-[70%] lg:max-w-[50%] mx-auto overflow-hidden text-center min-h-[88px] sm:min-h-40 md:min-h-56 translate-y-1 md:translate-y-0">
             {heroMessages.map((message, index) => (
               <span
                 key={message.title}
@@ -126,20 +150,22 @@ export default function HeroSection() {
                 }}
                 className="absolute inset-0"
               >
-                <span
-                  className="block text-[clamp(2rem,7vw,2.6rem)] sm:text-[clamp(2.3rem,5.5vw,3.1rem)] md:text-[clamp(2.6rem,6vw,3.6rem)] leading-[1.02] tracking-[-0.045em] text-white"
-                >
+                <span className="block text-[clamp(2rem,7vw,2.6rem)] sm:text-[clamp(2.3rem,5.5vw,3.1rem)] md:text-[clamp(2.6rem,6vw,3.6rem)] leading-[1.02] tracking-[-0.045em] text-white">
                   {message.title}
                 </span>
-              
               </span>
             ))}
           </h1>
 
-          {/* Rotating text line */}
-          <div className="mt-2 flex flex-col md:flex-row items-center justify-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-[0.16em] text-white/50">
+          {/* Designed for line */}
+          <div className="md:hidden mt-4 flex items-center justify-center gap-3 text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-white/50">
             <span className="font-semibold">DESIGNED FOR</span>
-            <div className="relative h-4 sm:h-5 overflow-hidden w-36 sm:w-44 text-left mx-auto">
+            <span className="text-orange-400">{rotatingPhrases[0]}</span>
+          </div>
+
+          <div className="hidden md:flex mt-2 flex-col md:flex-row items-center justify-center gap-1 text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-[0.16em] text-white/50">
+            <span className="font-semibold">DESIGNED FOR</span>
+            <div className="relative h-4 sm:h-5 overflow-hidden w-32 sm:w-44 text-left mx-auto">
               {rotatingPhrases.map((phrase, index) => (
                 <span
                   key={phrase}
@@ -154,7 +180,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-4 md:mt-6 flex flex-wrap items-center justify-center gap-2 md:gap-3">
             <AnimatedCharsButton
               href="/components"
               label="Browse components"
